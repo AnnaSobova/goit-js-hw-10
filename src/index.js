@@ -1,7 +1,7 @@
 import './css/styles.css';
 import API from './fetchCountries';
 import Notiflix from 'notiflix';
-import { debounce } from 'throttle-debounce';
+import debounce from 'lodash.debounce';
 const DEBOUNCE_DELAY = 300;
 
 const refs = {
@@ -10,7 +10,7 @@ const refs = {
 	countryInfo: document.querySelector('.country-info'),
 };
 const { inputText, countryList, countryInfo } = refs;
-inputText.addEventListener('input', debounce(DEBOUNCE_DELAY, onSearchInput));
+inputText.addEventListener('input', debounce( onSearchInput,DEBOUNCE_DELAY));
 
 function onSearchInput(evt) {
 	if (evt.target.value.trim() === '') {
